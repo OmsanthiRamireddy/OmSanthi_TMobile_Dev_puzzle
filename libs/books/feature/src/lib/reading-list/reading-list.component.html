@@ -9,7 +9,7 @@
         {{ b.authors.join(',') }}
       </div>
     </div>
-    <div>
+    <div style="display: inline;">
       <button
         mat-icon-button
         color="warn"
@@ -18,6 +18,14 @@
       >
         <mat-icon>remove_circle</mat-icon>
       </button>
+      <button
+      mat-icon-button
+      color="primary"
+      [attr.aria-label]="'Finished ' + b.title "
+      (click)="finished(b)"
+    >
+      <mat-icon>remove_circle</mat-icon>
+    </button>
     </div>
   </div>
 </ng-container>

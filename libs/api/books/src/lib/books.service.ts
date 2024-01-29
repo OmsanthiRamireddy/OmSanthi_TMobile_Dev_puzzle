@@ -32,4 +32,7 @@ export class BooksService {
         })
       );
   }
+  // finished():Observable<Book[]>{
+  //   return this.http.put('/api/reading-list/:id/finished')
+  // }
 }

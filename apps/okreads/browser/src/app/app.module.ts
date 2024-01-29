@@ -30,7 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
           strictStateImmutability: true,
           strictActionImmutability: true
         }
-      }
+      }  
     ),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ name: 'tmo' })

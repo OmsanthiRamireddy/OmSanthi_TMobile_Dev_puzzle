@@ -30,14 +30,14 @@
             <strong>Published:</strong> {{ formatDate(b.publishedDate) }}
           </div>
           <p [innerHTML]="b.description"></p>
-          <div>
-            <button
+          <div >
+            <button 
               mat-flat-button
               color="primary"
-              (click)="addBookToReadingList(b)"
-              [disabled]="b.isAdded"
+              (click)="addBookToReadingList(b,b)"
             >
-              Want to Read
+              <!-- Want to Read -->
+              {{ b.isAdded ? 'Undo' : 'Want to Read' }}
             </button>
           </div>
         </div>

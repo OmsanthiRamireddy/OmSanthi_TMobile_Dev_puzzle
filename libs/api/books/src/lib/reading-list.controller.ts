@@ -20,4 +20,8 @@ export class ReadingListController {
   async removeFromReadingList(@Param() params) {
     return await this.readingList.removeBook(params.id);
   }
+  // @Post('/reading-list/:id')
+  // async undoToReadingList(@Body() item: Book) {
+  //   return await this.readingList.addBook(item);
+  // }
 }

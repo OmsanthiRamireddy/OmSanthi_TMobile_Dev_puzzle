@@ -53,7 +53,22 @@ export class ReadingListEffects implements OnInitEffects {
       )
     )
   );
-
+  undoBook$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(ReadingListActions.undoFromList),
+  concatMap(({ book }) =>
+    this.http.delete(`/api/reading-list/${book.id}`).pipe(
+      map(() =>
+        ReadingListActions.confirmedUndoFromList({ book })
+      ),
+      catchError(() =>
+        of(ReadingListActions.failedUndoFromList({ book }))
+      )
+    )
+  )
+)
+);
+ 
   ngrxOnInitEffects() {
     return ReadingListActions.init();
   }

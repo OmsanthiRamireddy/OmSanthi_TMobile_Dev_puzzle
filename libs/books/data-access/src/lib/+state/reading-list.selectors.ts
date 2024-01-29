@@ -12,7 +12,7 @@ import { Book, ReadingListItem } from '@tmo/shared/models';
 export const getReadingListState = createFeatureSelector<
   ReadingListPartialState,
   State
->(READING_LIST_FEATURE_KEY);
+>(READING_LIST_FEATURE_KEY)
 
 const {
   selectEntities,

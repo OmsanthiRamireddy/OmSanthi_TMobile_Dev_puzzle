@@ -26,7 +26,8 @@ export class BooksService {
               publishedDate: item.volumeInfo?.publishedDate
                 ? new Date(item.volumeInfo?.publishedDate).toISOString()
                 : undefined,
-              coverUrl: item.volumeInfo?.imageLinks?.thumbnail
+              coverUrl: item.volumeInfo?.imageLinks?.thumbnail,
+              wanttoRead:false
             };
           });
         })

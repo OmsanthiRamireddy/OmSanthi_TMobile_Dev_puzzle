@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
 import { getReadingList, removeFromReadingList } from '@tmo/books/data-access';
 
@@ -10,9 +11,13 @@ import { getReadingList, removeFromReadingList } from '@tmo/books/data-access';
 export class ReadingListComponent {
   readingList$ = this.store.select(getReadingList);
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store,
+    public snackBar: MatSnackBar) {}
 
   removeFromReadingList(item) {
     this.store.dispatch(removeFromReadingList({ item }));
+    this.snackBar.open(item.title + "  removed from ReadingList.", 'Close', {
+      duration: 2000,
+    });
   }
 }

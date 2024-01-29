@@ -15,5 +15,9 @@ export const searchBooksFailure = createAction(
   '[Book Search API] Search failure',
   props<{ error: any }>()
 );
-
+export const undo = createAction(
+  '[Book Search API] undo',
+  props<{ term: string }>()
+);
+export const undoReadingList = createAction('[Reading List] Undo Reading List', props<{ bookId: number }>());
 export const clearSearch = createAction('[Books Search Bar] Clear Search');

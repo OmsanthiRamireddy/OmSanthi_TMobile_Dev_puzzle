@@ -25,11 +25,16 @@ export const initialState: State = booksAdapter.getInitialState({
 const booksReducer = createReducer(
   initialState,
   on(BooksActions.searchBooks, (state, { term }) => ({
+    
     ...state,
     searchTerm: term,
     loaded: false,
-    error: null
-  })),
+    error: null,
+    
+  }
+  
+  )
+  ),
   on(BooksActions.searchBooksSuccess, (state, action) =>
     booksAdapter.setAll(action.books, {
       ...state,
@@ -40,9 +45,10 @@ const booksReducer = createReducer(
     ...state,
     error
   })),
-  on(BooksActions.clearSearch, state => booksAdapter.removeAll(state))
-);
+  on(BooksActions.clearSearch, state => booksAdapter.removeAll(state)),
+  
 
+)
 export function reducer(state: State | undefined, action: Action) {
   return booksReducer(state, action);
 }

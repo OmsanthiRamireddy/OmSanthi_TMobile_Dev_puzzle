@@ -8,7 +8,17 @@
       <div class="reading-list-item--details--author">
         {{ b.authors.join(',') }}
       </div>
+      <div
+      *ngIf="b.finishedDate"
+      class="book-finished-label"
+      data-testing="book-finished-label"
+    >
+      Finished on {{ b?.finishedDate | date: 'dd-MM-yy' }}
     </div>
+    </div>
+    <p *ngIf="b.finishedDate">
+      <span>Finished on: {{ b.finishedDate | date: 'medium' }}</span>
+    </p>
     <div style="display: inline;">
       <button
         mat-icon-button
@@ -18,14 +28,23 @@
       >
         <mat-icon>remove_circle</mat-icon>
       </button>
-      <button
-      mat-icon-button
-      color="primary"
-      [attr.aria-label]="'Finished ' + b.title "
-      (click)="finished(b)"
-    >
-      <mat-icon>remove_circle</mat-icon>
-    </button>
+      <div>
+        <button *ngIf="!b.finished" class="mark-as-finished"
+          data-testing="mark-as-finished-button"
+          mat-icon-button
+          color="black"
+          (click)="markBookAsFinished(b)"
+        >
+          <mat-icon> check_circle</mat-icon>
+        </button>
+        <button *ngIf="b.finished" class="finished"
+        data-testing="mark-as-finished-button"
+        mat-icon-button
+        color="black"
+      >
+        <mat-icon> check_circle</mat-icon>
+      </button>
+      </div>
     </div>
   </div>
 </ng-container>

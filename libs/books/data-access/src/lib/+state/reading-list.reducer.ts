@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState, Update } from '@ngrx/entity';
 
 import * as ReadingListActions from './reading-list.actions';
 import { ReadingListItem } from '@tmo/shared/models';
@@ -23,6 +23,7 @@ export const readingListAdapter: EntityAdapter<ReadingListItem> = createEntityAd
 
 export const initialState: State = readingListAdapter.getInitialState({
   loaded: false,
+  finished:false,
   error: null
 });
 
@@ -31,7 +32,7 @@ const readingListReducer = createReducer(
   on(ReadingListActions.init, state => {
     return {
       ...state,
-      loaded: false,
+      loaded: false,finished:false,
       error: null
     };
   }),
@@ -53,9 +54,33 @@ const readingListReducer = createReducer(
   on(ReadingListActions.removeFromReadingList, (state, action) =>
     readingListAdapter.removeOne(action.item.bookId, state)
   ),
-  on(ReadingListActions.finished, (state, action) =>
-  readingListAdapter.removeOne(action.item.bookId, state)
-)
+  on(ReadingListActions.markAsFinished, (state, action) => {
+    return state;
+  }),
+  on(ReadingListActions.failedMarkAsFinished, (state, action) => {
+    return state;
+  }),
+  on(ReadingListActions.confirmedMarkAsFinished, (state, action) => {
+    const bookItem: Update<ReadingListItem> = {
+      id: action.item.bookId,
+      changes: action.item,
+    };
+    return readingListAdapter.updateOne(bookItem, state);
+  })
+  ,
+  on(ReadingListActions.markAsunFinished, (state, action) => {
+    return state;
+  }),
+  on(ReadingListActions.failedMarkAsunFinished, (state, action) => {
+    return state;
+  }),
+  on(ReadingListActions.confirmedMarkAsunFinished, (state, action) => {
+    const bookItem: Update<ReadingListItem> = {
+      id: action.item.bookId,
+      changes: action.item,
+    };
+    return readingListAdapter.updateOne(bookItem, state);
+  })
 );
 
 export function reducer(state: State | undefined, action: Action) {

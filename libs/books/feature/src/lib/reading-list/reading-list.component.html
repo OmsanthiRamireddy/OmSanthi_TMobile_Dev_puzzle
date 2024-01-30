@@ -19,7 +19,7 @@
     <p *ngIf="b.finishedDate">
       <span>Finished on: {{ b.finishedDate | date: 'medium' }}</span>
     </p>
-    <div style="display: inline;">
+    <div>
       <button
         mat-icon-button
         color="warn"
@@ -29,7 +29,7 @@
         <mat-icon>remove_circle</mat-icon>
       </button>
       <div>
-        <button *ngIf="!b.finished" class="mark-as-finished"
+        <button [ngClass]="b.finished ? 'finished' : 'mark-as-finished'"
           data-testing="mark-as-finished-button"
           mat-icon-button
           color="black"
@@ -37,13 +37,7 @@
         >
           <mat-icon> check_circle</mat-icon>
         </button>
-        <button *ngIf="b.finished" class="finished"
-        data-testing="mark-as-finished-button"
-        mat-icon-button
-        color="black"
-      >
-        <mat-icon> check_circle</mat-icon>
-      </button>
+        
       </div>
     </div>
   </div>

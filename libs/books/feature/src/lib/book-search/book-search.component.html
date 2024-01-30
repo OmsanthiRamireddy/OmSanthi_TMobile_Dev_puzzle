@@ -21,7 +21,7 @@
       </div>
       <div class="book--content">
         <div class="book--content--cover">
-          <img src="{{ b.coverUrl }}" />
+          <img src="{{ b.coverUrl }}" alt="content"/>
         </div>
         <div class="book--content--info">
           <div><strong>Author:</strong> {{ b.authors.join(',') }}</div>
@@ -29,7 +29,7 @@
           <div>
             <strong>Published:</strong> {{ formatDate(b.publishedDate) }}
           </div>
-          <p [innerHTML]="b.description"></p>
+          <p>{{b.description}}</p>
           <div>
             <button
               mat-flat-button
